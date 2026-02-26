@@ -1,0 +1,43 @@
+{
+  "enabled": false,
+  "service_id": "gdrive-main",
+  "kind": "gdrive",
+  "version": "1",
+  "state": "online",
+  "endpoints": [
+    "/nodes/{node_id}/drive/main"
+  ],
+  "capabilities": {
+    "provider": "google-drive",
+    "write": true
+  },
+  "mounts": [
+    {
+      "mount_id": "drive-main",
+      "mount_path": "/nodes/{node_id}/drive/main",
+      "state": "online"
+    }
+  ],
+  "ops": {
+    "model": "namespace",
+    "style": "plan9",
+    "cloud": true
+  },
+  "runtime": {
+    "type": "wasm",
+    "abi": "namespace-driver-v1"
+  },
+  "permissions": {
+    "default": "deny-by-default",
+    "oauth_required": true
+  },
+  "schema": {
+    "model": "namespace-mount",
+    "entries": [
+      "README.md",
+      "shared/",
+      "my-drive/"
+    ]
+  },
+  "help_md": "Example Google Drive namespace. Set enabled=true after wiring credentials."
+}

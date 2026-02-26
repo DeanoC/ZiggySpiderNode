@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "service_id": "camera-main",
+  "kind": "camera",
+  "version": "1",
+  "state": "online",
+  "endpoints": [
+    "/nodes/{node_id}/camera"
+  ],
+  "capabilities": {
+    "still": true,
+    "video": false
+  },
+  "mounts": [
+    {
+      "mount_id": "camera-main",
+      "mount_path": "/nodes/{node_id}/camera",
+      "state": "online"
+    }
+  ],
+  "ops": {
+    "model": "namespace",
+    "style": "plan9",
+    "device": "camera"
+  },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1"
+  },
+  "permissions": {
+    "default": "deny-by-default",
+    "requires_user_consent": true
+  },
+  "schema": {
+    "model": "namespace-mount",
+    "entries": [
+      "README.md",
+      "capture.jpg",
+      "stream.mjpeg"
+    ]
+  },
+  "help_md": "Camera namespace driver. Read capture.jpg for snapshots."
+}
