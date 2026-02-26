@@ -27,6 +27,12 @@ Binary output:
   --node-name "edge-node"
 ```
 
+## Pairing State and Recovery
+
+- Pairing credentials are persisted in the node state file (`--state-file`, defaults to `./spiderweb-fs-node-state.json`).
+- If the control server rejects saved credentials (`node_not_found` / `NodeNotFound`), the node now clears stale local state and automatically re-enters pairing mode.
+- For invite mode, keep a valid invite token available so unattended re-pair can succeed after server resets.
+
 ## Dependencies
 
 - `ziggy_spider_protocol` (local path dependency in `build.zig.zon`)
