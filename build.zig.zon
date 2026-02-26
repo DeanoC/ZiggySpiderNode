@@ -5,7 +5,8 @@
     .minimum_zig_version = "0.13.0",
     .dependencies = .{
         .ziggy_spider_protocol = .{
-            .path = "../ZiggySpiderProtocol",
+            .url = "https://github.com/DeanoC/ZiggySpiderProtocol/archive/053d654b3f7635ba31e10592e9edc5fb2cf1e1da.tar.gz",
+            .hash = "ziggy_spider_protocol-0.1.0-Tn7uq6cZCQBalgcVUv1PGJbUZHjAFI9oatj7B_TUotkj",
         },
     },
     .paths = .{
