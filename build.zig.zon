@@ -1,0 +1,18 @@
+.{
+    .name = .ziggy_spider_node,
+    .version = "0.1.0",
+    .fingerprint = 0x8c1837d0180e6ac9,
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .ziggy_spider_protocol = .{
+            .path = "../ZiggySpiderProtocol",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "README.md",
+        "LICENSE",
+    },
+}
