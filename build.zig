@@ -36,6 +36,34 @@ pub fn build(b: *std.Build) void {
     echo_driver.linkLibC();
     b.installArtifact(echo_driver);
 
+    const echo_inproc_mod = b.createModule(.{
+        .root_source_file = b.path("examples/drivers/echo_inproc_driver.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    const echo_inproc = b.addLibrary(.{
+        .name = "spiderweb-echo-driver-inproc",
+        .root_module = echo_inproc_mod,
+        .linkage = .dynamic,
+    });
+    echo_inproc.linkLibC();
+    b.installArtifact(echo_inproc);
+
+    const wasm_target = b.resolveTargetQuery(.{
+        .cpu_arch = .wasm32,
+        .os_tag = .wasi,
+    });
+    const echo_wasm_mod = b.createModule(.{
+        .root_source_file = b.path("examples/drivers/echo_wasi_driver.zig"),
+        .target = wasm_target,
+        .optimize = optimize,
+    });
+    const echo_wasm = b.addExecutable(.{
+        .name = "spiderweb-echo-driver-wasm",
+        .root_module = echo_wasm_mod,
+    });
+    b.installArtifact(echo_wasm);
+
     const run_cmd = b.addRunArtifact(spider_node);
     if (b.args) |args| run_cmd.addArgs(args);
     const run_step = b.step("run", "Run spiderweb-fs-node");

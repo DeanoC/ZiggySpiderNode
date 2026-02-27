@@ -1,0 +1,51 @@
+{
+  "enabled": false,
+  "service_id": "echo-wasm",
+  "kind": "utility",
+  "version": "1",
+  "state": "online",
+  "endpoints": [
+    "/nodes/{node_id}/echo/wasm"
+  ],
+  "capabilities": {
+    "invoke": true,
+    "runtime": "wasm"
+  },
+  "mounts": [
+    {
+      "mount_id": "echo-wasm",
+      "mount_path": "/nodes/{node_id}/echo/wasm",
+      "state": "online"
+    }
+  ],
+  "ops": {
+    "model": "namespace",
+    "style": "plan9",
+    "invoke": "control/invoke.json"
+  },
+  "runtime": {
+    "type": "wasm",
+    "abi": "namespace-driver-v1",
+    "module_path": "./zig-out/bin/spiderweb-echo-driver-wasm.wasm",
+    "runner_path": "wasmtime",
+    "timeout_ms": 15000
+  },
+  "permissions": {
+    "default": "deny-by-default",
+    "allow_roles": [
+      "admin",
+      "user"
+    ]
+  },
+  "schema": {
+    "model": "namespace-service-v1",
+    "control": {
+      "invoke": "control/invoke.json",
+      "reset": "control/reset"
+    },
+    "result": "result.json",
+    "status": "status.json",
+    "metrics": "metrics.json"
+  },
+  "help_md": "Reference WASI namespace driver. Enable after installing wasmtime."
+}

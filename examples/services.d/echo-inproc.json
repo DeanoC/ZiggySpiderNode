@@ -1,0 +1,50 @@
+{
+  "enabled": true,
+  "service_id": "echo-inproc",
+  "kind": "utility",
+  "version": "1",
+  "state": "online",
+  "endpoints": [
+    "/nodes/{node_id}/echo/inproc"
+  ],
+  "capabilities": {
+    "invoke": true,
+    "runtime": "native_inproc"
+  },
+  "mounts": [
+    {
+      "mount_id": "echo-inproc",
+      "mount_path": "/nodes/{node_id}/echo/inproc",
+      "state": "online"
+    }
+  ],
+  "ops": {
+    "model": "namespace",
+    "style": "plan9",
+    "invoke": "control/invoke.json"
+  },
+  "runtime": {
+    "type": "native_inproc",
+    "abi": "namespace-driver-v1",
+    "library_path": "./zig-out/lib/libspiderweb-echo-driver-inproc.so",
+    "timeout_ms": 15000
+  },
+  "permissions": {
+    "default": "deny-by-default",
+    "allow_roles": [
+      "admin",
+      "user"
+    ]
+  },
+  "schema": {
+    "model": "namespace-service-v1",
+    "control": {
+      "invoke": "control/invoke.json",
+      "reset": "control/reset"
+    },
+    "result": "result.json",
+    "status": "status.json",
+    "metrics": "metrics.json"
+  },
+  "help_md": "Reference native_inproc namespace driver. Update library_path for your platform."
+}

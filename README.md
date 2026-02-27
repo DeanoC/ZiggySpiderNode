@@ -15,6 +15,8 @@ Binary output:
 
 - `zig-out/bin/spiderweb-fs-node`
 - `zig-out/bin/spiderweb-echo-driver` (reference `native_proc` namespace driver)
+- `zig-out/lib/libspiderweb-echo-driver-inproc.so` (reference `native_inproc` driver on Linux; platform-specific filename)
+- `zig-out/bin/spiderweb-echo-driver-wasm.wasm` (reference WASI driver module)
 
 ## Run (invite pairing)
 
@@ -88,9 +90,18 @@ on stdout. With `echo.json` loaded, the service is projected as a namespace
 mount (`/nodes/<node_id>/echo`) with:
 
 - `control/invoke.json` (write JSON payload)
+- `control/reset` (write any payload to reset state files)
 - `result.json` (driver stdout)
 - `status.json`
+- `metrics.json`
 - `last_error.txt`
+
+Additional runtime examples:
+
+- `examples/services.d/echo-inproc.json`: in-process dynamic library driver
+  (`runtime.type = native_inproc`)
+- `examples/services.d/echo-wasm.json`: WASI module driver via runner
+  (`runtime.type = wasm`, `runner_path = wasmtime`)
 
 ## Pairing State and Recovery
 
