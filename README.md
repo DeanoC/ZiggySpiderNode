@@ -45,6 +45,7 @@ Example:
   --control-url "ws://<server>:18790/" \
   --control-auth-token "<admin-token>" \
   --pair-mode request \
+  --manifest-reload-interval-ms 2000 \
   --service-manifest ./examples/services.d/echo.json \
   --services-dir ./services.d
 ```
@@ -97,6 +98,7 @@ mount (`/nodes/<node_id>/echo`) with:
 - `last_error.txt`
 - `config.json` (runtime policy input)
 - `health.json` (runtime + supervision state)
+- `HOST.json` (runtime host contract metadata)
 
 `config.json` can carry optional supervision policy for executable services:
 
@@ -124,6 +126,8 @@ Additional runtime examples:
 - Namespace service runtime state is persisted beside it as
   `<state-file>.runtime-services.json` (control ops, supervision config, metrics,
   and surfaced status/error/result files), and restored on next start.
+- Manifest files are polled for hot reload in control-tunnel mode (default every
+  2000ms, configurable via `--manifest-reload-interval-ms`).
 - If the control server rejects saved credentials (`node_not_found` / `NodeNotFound`), the node now clears stale local state and automatically re-enters pairing mode.
 - For invite mode, keep a valid invite token available so unattended re-pair can succeed after server resets.
 
