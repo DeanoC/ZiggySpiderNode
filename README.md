@@ -121,6 +121,9 @@ Additional runtime examples:
 ## Pairing State and Recovery
 
 - Pairing credentials are persisted in the node state file (`--state-file`, defaults to `./spiderweb-fs-node-state.json`).
+- Namespace service runtime state is persisted beside it as
+  `<state-file>.runtime-services.json` (control ops, supervision config, metrics,
+  and surfaced status/error/result files), and restored on next start.
 - If the control server rejects saved credentials (`node_not_found` / `NodeNotFound`), the node now clears stale local state and automatically re-enters pairing mode.
 - For invite mode, keep a valid invite token available so unattended re-pair can succeed after server resets.
 
