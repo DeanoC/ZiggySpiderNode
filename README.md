@@ -95,6 +95,21 @@ mount (`/nodes/<node_id>/echo`) with:
 - `status.json`
 - `metrics.json`
 - `last_error.txt`
+- `config.json` (runtime policy input)
+- `health.json` (runtime + supervision state)
+
+`config.json` can carry optional supervision policy for executable services:
+
+```json
+{
+  "supervision": {
+    "max_consecutive_failures": 3,
+    "max_consecutive_timeouts": 2,
+    "cooldown_ms": 5000,
+    "auto_disable_on_threshold": true
+  }
+}
+```
 
 Additional runtime examples:
 
