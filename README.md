@@ -14,6 +14,7 @@ zig build -Doptimize=ReleaseSafe
 Binary output:
 
 - `zig-out/bin/spiderweb-fs-node`
+- `zig-out/bin/spiderweb-echo-driver` (reference `native_proc` namespace driver)
 
 ## Run (invite pairing)
 
@@ -42,7 +43,7 @@ Example:
   --control-url "ws://<server>:18790/" \
   --control-auth-token "<admin-token>" \
   --pair-mode request \
-  --service-manifest ./services.d/camera.json \
+  --service-manifest ./examples/services.d/echo.json \
   --services-dir ./services.d
 ```
 
@@ -63,7 +64,11 @@ Manifest shape (minimum):
     }
   ],
   "ops": { "model": "namespace", "style": "plan9" },
-  "runtime": { "type": "native_proc", "abi": "namespace-driver-v1" },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1",
+    "executable_path": "./zig-out/bin/spiderweb-echo-driver"
+  },
   "permissions": { "default": "deny-by-default" },
   "schema": { "model": "namespace-mount" },
   "help_md": "Camera namespace driver"
@@ -75,6 +80,17 @@ Notes:
 - `{node_id}` is expanded at runtime after pairing resolves the real node ID.
 - `enabled: false` can be used to keep a manifest file present but inactive.
 - Built-in FS/terminal providers and manifest services share one catalog namespace; duplicate service IDs are rejected.
+
+### Reference Driver Invoke Flow
+
+The included `spiderweb-echo-driver` consumes JSON from stdin and returns JSON
+on stdout. With `echo.json` loaded, the service is projected as a namespace
+mount (`/nodes/<node_id>/echo`) with:
+
+- `control/invoke.json` (write JSON payload)
+- `result.json` (driver stdout)
+- `status.json`
+- `last_error.txt`
 
 ## Pairing State and Recovery
 

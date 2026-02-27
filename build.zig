@@ -24,6 +24,18 @@ pub fn build(b: *std.Build) void {
     spider_node.linkLibC();
     b.installArtifact(spider_node);
 
+    const echo_driver_mod = b.createModule(.{
+        .root_source_file = b.path("examples/drivers/echo_driver.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    const echo_driver = b.addExecutable(.{
+        .name = "spiderweb-echo-driver",
+        .root_module = echo_driver_mod,
+    });
+    echo_driver.linkLibC();
+    b.installArtifact(echo_driver);
+
     const run_cmd = b.addRunArtifact(spider_node);
     if (b.args) |args| run_cmd.addArgs(args);
     const run_step = b.step("run", "Run spiderweb-fs-node");

@@ -1,0 +1,44 @@
+{
+  "enabled": true,
+  "service_id": "echo-main",
+  "kind": "utility",
+  "version": "1",
+  "state": "online",
+  "endpoints": [
+    "/nodes/{node_id}/echo"
+  ],
+  "capabilities": {
+    "invoke": true
+  },
+  "mounts": [
+    {
+      "mount_id": "echo-main",
+      "mount_path": "/nodes/{node_id}/echo",
+      "state": "online"
+    }
+  ],
+  "ops": {
+    "model": "namespace",
+    "style": "plan9",
+    "invoke": "control/invoke.json"
+  },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1",
+    "executable_path": "./zig-out/bin/spiderweb-echo-driver"
+  },
+  "permissions": {
+    "default": "deny-by-default",
+    "allow_roles": [
+      "admin",
+      "user"
+    ]
+  },
+  "schema": {
+    "model": "namespace-service-v1",
+    "control": "control/invoke.json",
+    "result": "result.json",
+    "status": "status.json"
+  },
+  "help_md": "Reference native_proc namespace driver. Write JSON to control/invoke.json."
+}

@@ -25,7 +25,8 @@
   },
   "runtime": {
     "type": "native_proc",
-    "abi": "namespace-driver-v1"
+    "abi": "namespace-driver-v1",
+    "executable_path": "camera-driver"
   },
   "permissions": {
     "default": "deny-by-default",
