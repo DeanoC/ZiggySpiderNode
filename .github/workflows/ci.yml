@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.1
+
+      - name: Zig version
+        run: zig version
+
+      - name: Build
+        run: zig build
+
+      - name: Test
+        run: zig build test
+
+  windows-cross-on-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.1
+
+      - name: Cross-build Windows artifacts (Linux host)
+        run: |
+          TARGET=x86_64-windows-gnu OPTIMIZE=ReleaseSafe RUN_WINE_SMOKE=0 ./scripts/check-windows-build.sh

@@ -11,6 +11,26 @@ node daemons without cloning the full `ZiggySpiderweb` server repository.
 zig build -Doptimize=ReleaseSafe
 ```
 
+## Linux-Side Windows Build Verification
+
+You can validate Windows outputs from Linux using cross-compilation:
+
+```bash
+TARGET=x86_64-windows-gnu OPTIMIZE=ReleaseSafe RUN_WINE_SMOKE=0 ./scripts/check-windows-build.sh
+```
+
+Optional execution smoke test (if `wine`/`wine64` is installed):
+
+```bash
+TARGET=x86_64-windows-gnu RUN_WINE_SMOKE=1 ./scripts/check-windows-build.sh
+```
+
+What it verifies:
+
+- `spiderweb-fs-node.exe` builds
+- reference driver artifacts build (`.exe`, `.dll`, `.wasm`)
+- optional `--help` run of `spiderweb-fs-node.exe` through Wine
+
 Binary output:
 
 - `zig-out/bin/spiderweb-fs-node`
