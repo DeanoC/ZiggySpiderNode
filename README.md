@@ -30,6 +30,38 @@ Binary output:
   --node-name "edge-node"
 ```
 
+## Built-in Terminal Service
+
+Use `--terminal-id <id>` (repeatable) to publish executable terminal namespace
+services alongside FS:
+
+```bash
+./zig-out/bin/spiderweb-fs-node \
+  --export "work=.:rw" \
+  --terminal-id "1" \
+  --control-url "ws://<server>:18790/" \
+  --control-auth-token "<admin-token>" \
+  --pair-mode invite \
+  --invite-token "inv-..." \
+  --node-name "edge-node"
+```
+
+Each terminal service is exposed as:
+
+- service id: `terminal-<id>`
+- mount: `/nodes/<node_id>/terminal/<id>`
+- invoke path: `control/invoke.json`
+
+Invoke payload examples:
+
+```json
+{"command":"echo hello from terminal"}
+```
+
+```json
+{"argv":["/bin/sh","-lc","echo hello"],"cwd":".","max_output_bytes":65536}
+```
+
 ## Add Extra Services (Manifest)
 
 `spiderweb-fs-node` can advertise additional namespace services via JSON manifests:
