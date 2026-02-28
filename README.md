@@ -35,6 +35,7 @@ Binary output:
 
 - `zig-out/bin/spiderweb-fs-node`
 - `zig-out/bin/spiderweb-echo-driver` (reference `native_proc` namespace driver)
+- `zig-out/bin/spiderweb-web-search-driver` (reference `native_proc` web search driver)
 - `zig-out/lib/libspiderweb-echo-driver-inproc.so` (reference `native_inproc` driver on Linux; platform-specific filename)
 - `zig-out/bin/spiderweb-echo-driver-wasm.wasm` (reference WASI driver module)
 
@@ -126,6 +127,7 @@ Manifest shape (minimum):
   },
   "permissions": { "default": "deny-by-default" },
   "schema": { "model": "namespace-mount" },
+  "invoke_template": {},
   "help_md": "Camera namespace driver"
 }
 ```
@@ -135,6 +137,7 @@ Notes:
 - `{node_id}` is expanded at runtime after pairing resolves the real node ID.
 - `enabled: false` can be used to keep a manifest file present but inactive.
 - Built-in FS/terminal providers and manifest services share one catalog namespace; duplicate service IDs are rejected.
+- `invoke_template` (object, optional) seeds namespace `TEMPLATE.json`/`template.json`.
 
 ### Reference Driver Invoke Flow
 
@@ -144,6 +147,8 @@ mount (`/nodes/<node_id>/echo`) with:
 
 - `control/invoke.json` (write JSON payload)
 - `control/reset` (write any payload to reset state files)
+- `SCHEMA.json` / `schema.json`
+- `TEMPLATE.json` / `template.json`
 - `result.json` (driver stdout)
 - `status.json`
 - `metrics.json`
@@ -171,6 +176,8 @@ Additional runtime examples:
   (`runtime.type = native_inproc`)
 - `examples/services.d/echo-wasm.json`: WASI module driver via runner
   (`runtime.type = wasm`, `runner_path = wasmtime`)
+- `examples/services.d/web-search.json`: native process web search namespace
+  service (`runtime.type = native_proc`)
 
 ## Pairing State and Recovery
 

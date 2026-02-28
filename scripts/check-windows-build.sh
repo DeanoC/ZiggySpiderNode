@@ -21,6 +21,7 @@ BIN_DIR="$ROOT_DIR/zig-out/bin"
 REQUIRED=(
   "$BIN_DIR/spiderweb-fs-node.exe"
   "$BIN_DIR/spiderweb-echo-driver.exe"
+  "$BIN_DIR/spiderweb-web-search-driver.exe"
   "$BIN_DIR/spiderweb-echo-driver-inproc.dll"
   "$BIN_DIR/spiderweb-echo-driver-wasm.wasm"
 )

@@ -2,6 +2,7 @@
 
 - `camera.json`: enabled example native process camera namespace
 - `echo.json`: enabled reference `native_proc` namespace driver manifest
+- `web-search.json`: enabled reference `native_proc` web search driver manifest
 - `echo-inproc.json`: enabled reference `native_inproc` namespace driver manifest
 - `echo-wasm.json`: disabled reference WASI namespace driver manifest
 - `gdrive.json`: disabled example cloud-drive namespace
@@ -27,5 +28,6 @@ Or load all JSON manifests in the directory:
 The reference driver executable is built as:
 
 - `zig-out/bin/spiderweb-echo-driver`
+- `zig-out/bin/spiderweb-web-search-driver`
 - `zig-out/lib/libspiderweb-echo-driver-inproc.so` (Linux; platform-specific name/path)
 - `zig-out/bin/spiderweb-echo-driver-wasm.wasm`

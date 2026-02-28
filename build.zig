@@ -36,6 +36,18 @@ pub fn build(b: *std.Build) void {
     echo_driver.linkLibC();
     b.installArtifact(echo_driver);
 
+    const web_search_driver_mod = b.createModule(.{
+        .root_source_file = b.path("examples/drivers/web_search_driver.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    const web_search_driver = b.addExecutable(.{
+        .name = "spiderweb-web-search-driver",
+        .root_module = web_search_driver_mod,
+    });
+    web_search_driver.linkLibC();
+    b.installArtifact(web_search_driver);
+
     const echo_inproc_mod = b.createModule(.{
         .root_source_file = b.path("examples/drivers/echo_inproc_driver.zig"),
         .target = target,

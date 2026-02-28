@@ -1,0 +1,88 @@
+{
+  "enabled": true,
+  "service_id": "web-search",
+  "kind": "search",
+  "version": "1",
+  "state": "online",
+  "endpoints": [
+    "/nodes/{node_id}/web/search"
+  ],
+  "capabilities": {
+    "invoke": true,
+    "provider": "duckduckgo_instant_answer"
+  },
+  "mounts": [
+    {
+      "mount_id": "web-search",
+      "mount_path": "/nodes/{node_id}/web/search",
+      "state": "online"
+    }
+  ],
+  "ops": {
+    "model": "namespace",
+    "style": "plan9",
+    "invoke": "control/invoke.json"
+  },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1",
+    "executable_path": "./zig-out/bin/spiderweb-web-search-driver",
+    "timeout_ms": 20000
+  },
+  "permissions": {
+    "default": "deny-by-default",
+    "allow_roles": [
+      "admin",
+      "user"
+    ]
+  },
+  "schema": {
+    "model": "namespace-service-v1",
+    "input": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query string"
+        },
+        "max_results": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "default": 5
+        },
+        "region": {
+          "type": "string",
+          "description": "Optional DuckDuckGo region code, e.g. us-en"
+        },
+        "safesearch": {
+          "type": "string",
+          "description": "DuckDuckGo safe-search level: -2 (off), -1 (moderate), 1 (strict)"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "result_count": {
+          "type": "integer"
+        },
+        "results": {
+          "type": "array"
+        }
+      }
+    }
+  },
+  "invoke_template": {
+    "query": "latest zig language release notes",
+    "max_results": 5,
+    "region": "us-en"
+  },
+  "help_md": "Web search namespace driver (DuckDuckGo Instant Answer API). Write JSON payloads to control/invoke.json."
+}
