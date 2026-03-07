@@ -4,11 +4,11 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const ziggy_spider_protocol_dep = b.dependency("ziggy_spider_protocol", .{
+    const spider_protocol_dep = b.dependency("spider_protocol", .{
         .target = target,
         .optimize = optimize,
     });
-    const spiderweb_node_mod = ziggy_spider_protocol_dep.module("spiderweb_node");
+    const spiderweb_node_mod = spider_protocol_dep.module("spiderweb_node");
 
     const node_main_mod = b.createModule(.{
         .root_source_file = b.path("src/main.zig"),

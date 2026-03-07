@@ -14,7 +14,7 @@ fi
 
 cd "$ROOT_DIR"
 
-echo "==> Cross-compiling ZiggySpiderNode for $TARGET ($OPTIMIZE)"
+echo "==> Cross-compiling SpiderNode for $TARGET ($OPTIMIZE)"
 zig build -Dtarget="$TARGET" -Doptimize="$OPTIMIZE"
 
 BIN_DIR="$ROOT_DIR/zig-out/bin"
