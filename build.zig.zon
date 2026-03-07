@@ -1,17 +1,18 @@
 .{
-    .name = .ziggy_spider_node,
+    .name = .spider_node,
     .version = "0.1.0",
-    .fingerprint = 0x8c1837d0180e6ac9,
+    .fingerprint = 0xdf7339f32c5051ac,
     .minimum_zig_version = "0.13.0",
     .dependencies = .{
-        .ziggy_spider_protocol = .{
-            .url = "https://github.com/DeanoC/ZiggySpiderProtocol/archive/3682f1a8ce58a17a1d2c57b2263cb4dc90c053be.tar.gz",
-            .hash = "ziggy_spider_protocol-0.1.0-Tn7uq4YyDQDSiTt7cvCiJyukLM04_NN_tZIbaXVQVNxl",
+        .spider_protocol = .{
+            .path = "deps/spider-protocol",
         },
     },
     .paths = .{
         "build.zig",
         "build.zig.zon",
+        ".gitmodules",
+        "deps",
         "src",
         "README.md",
         "LICENSE",
