@@ -1,8 +1,8 @@
-# ZiggySpiderNode
+# SpiderNode
 
 Standalone node runtime binaries for the Acheron/Spiderweb ecosystem.
 
-ZiggySpiderNode exists so operators can run node daemons on Linux/macOS/Windows without cloning the full server repo. It exports filesystem roots and services that Spiderweb projects into WorldFS.
+SpiderNode exists so operators can run node daemons on Linux/macOS/Windows without cloning the full server repo. It exports filesystem roots and services that Spiderweb mounts into the unified namespace.
 
 Learn more:
 - `docs/overview.md`

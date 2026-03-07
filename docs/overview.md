@@ -1,11 +1,11 @@
-# ZiggySpiderNode Overview
+# SpiderNode Overview
 
-ZiggySpiderNode provides the standalone node runtime binaries for the Acheron/Spiderweb ecosystem. It lets operators run node daemons on Linux, macOS, or Windows without cloning the full server repo.
+SpiderNode provides the standalone node runtime binaries for the Acheron/Spiderweb ecosystem. It lets operators run node daemons on Linux, macOS, or Windows without cloning the full server repo.
 
 ## Role in the Stack
 
 - Node runtimes export filesystem roots and services over Acheron.
-- Spiderweb’s control plane pairs nodes, manages leases, and projects node services into WorldFS.
+- Spiderweb’s control plane pairs nodes, manages leases, and projects node services into the unified namespace.
 - Agents interact with node resources through the `/nodes/<node_id>/...` namespace.
 
 ## What You Can Do
@@ -25,4 +25,4 @@ ZiggySpiderNode provides the standalone node runtime binaries for the Acheron/Sp
 ## Next Steps
 
 - `operations/fs-node.md` for pairing and service examples.
-- `ZiggySpiderProtocol/docs/protocols/namespace-driver-abi-v1.md` for driver ABI details.
+- `../deps/spider-protocol/docs/protocols/namespace-driver-abi-v1.md` for driver ABI details.

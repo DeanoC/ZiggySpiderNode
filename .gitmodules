@@ -1,0 +1,3 @@
+[submodule "deps/spider-protocol"]
+	path = deps/spider-protocol
+	url = https://github.com/DeanoC/SpiderProtocol.git

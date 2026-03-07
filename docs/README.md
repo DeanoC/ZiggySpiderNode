@@ -1,4 +1,4 @@
-# ZiggySpiderNode Documentation
+# SpiderNode Documentation
 
 This folder contains the maintained docs for the node runtime binaries.
 
@@ -8,5 +8,5 @@ This folder contains the maintained docs for the node runtime binaries.
 - `operations/fs-node.md` - pairing, services, and manifest usage
 
 ## Related Repos
-- ZiggySpiderweb (control plane + WorldFS)
-- ZiggySpiderProtocol (protocol + ABI definitions)
+- Spiderweb (control plane + unified namespace)
+- SpiderProtocol (protocol + ABI definitions)
